@@ -1,8 +1,9 @@
-module github.com/go-zoox/ip
+module github.com/go-zoox/openai-client
 
 go 1.18
 
 require (
+	github.com/go-zoox/core-utils v1.2.2
 	github.com/go-zoox/dotenv v1.2.3
 	github.com/go-zoox/fetch v1.7.4
 )
@@ -10,7 +11,6 @@ require (
 require (
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
-	github.com/go-zoox/core-utils v1.2.2 // indirect
 	github.com/go-zoox/fs v1.3.7 // indirect
 	github.com/go-zoox/headers v1.0.4 // indirect
 	github.com/go-zoox/tag v1.2.0 // indirect
