@@ -37,6 +37,10 @@ func New(cfg *Config) (Client, error) {
 		cfg.APIServer = DefaultAPIServer
 	}
 
+	if cfg.APIKey == "" {
+		return nil, fmt.Errorf("api key is required")
+	}
+
 	return &client{
 		cfg: cfg,
 	}, nil
