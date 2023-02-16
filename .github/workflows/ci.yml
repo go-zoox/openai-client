@@ -2,11 +2,8 @@ name: Go
 
 on:
   push:
-    branches: [ master ]
     tags:
       - v*
-  pull_request:
-    branches: [ master ]
 
 jobs:
 
@@ -29,12 +26,16 @@ jobs:
           go install golang.org/x/tools/cmd/goimports@latest
           go install golang.org/x/lint/golint@latest
           go install github.com/mattn/goveralls@latest
+
       - name: static analysis
         run: |
           golint -set_exit_status
           go vet
           test -z "$(goimports -l .)"
+
       - name: Test
         run: goveralls -service=github
         env:
           COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          
