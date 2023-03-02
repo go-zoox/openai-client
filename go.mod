@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/go-zoox/core-utils v1.2.2
 	github.com/go-zoox/dotenv v1.2.3
-	github.com/go-zoox/fetch v1.7.4
+	github.com/go-zoox/fetch v1.7.5
 )
 
 require (

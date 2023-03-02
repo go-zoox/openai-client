@@ -30,8 +30,20 @@ type client struct {
 
 // Config is the OpenAI Client configuration.
 type Config struct {
-	APIKey    string `json:"api_key"`
+	// APIKey is the OpenAI API Key.
+	APIKey string `json:"api_key"`
+
+	// APIServer customs the OpenAI API Server.
 	APIServer string `json:"api_server"`
+
+	// Proxy sets the request proxy.
+	//
+	//	support http, https, socks5
+	//	example:
+	//		http://127.0.0.1:17890
+	//		https://127.0.0.1:17890
+	//		socks5://127.0.0.1:17890
+	Proxy string `json:"proxy"`
 }
 
 // New creates a OpenAI Client.
@@ -57,6 +69,8 @@ func (c *client) post(path string, body fetch.Body) (*fetch.Response, error) {
 			"Authorization": fmt.Sprintf("Bearer %s", c.cfg.APIKey),
 		},
 		Body: body,
+		//
+		Proxy: c.cfg.Proxy,
 	})
 	if err != nil {
 		return nil, err
@@ -77,6 +91,8 @@ func (c *client) get(path string, query fetch.Query) (*fetch.Response, error) {
 			"Authorization": fmt.Sprintf("Bearer %s", c.cfg.APIKey),
 		},
 		Query: query,
+		//
+		Proxy: c.cfg.Proxy,
 	})
 	if err != nil {
 		return nil, err

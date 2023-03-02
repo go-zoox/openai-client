@@ -12,6 +12,7 @@ import (
 func TestCreateChatCompletion(t *testing.T) {
 	client, _ := New(&Config{
 		APIKey: os.Getenv("OPENAI_API_KEY"),
+		// Proxy:  "socks5://127.0.0.1:17890",
 	})
 
 	completion, err := client.CreateChatCompletion(&CreateChatCompletionRequest{
