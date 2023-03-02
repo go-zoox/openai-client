@@ -27,6 +27,12 @@ const (
 	ModelTextAda001 = "text-ada-001"
 )
 
+// Chat Models => https://platform.openai.com/docs/api-reference/chat
+const (
+	ModelGPT3_5Turbo     = "gpt-3.5-turbo"
+	ModelGPT3_5Turbo0301 = "gpt-3.5-turbo-0301"
+)
+
 // Codex => https://platform.openai.com/docs/models/codex
 const (
 	// ModelTextDavinci002 ...
