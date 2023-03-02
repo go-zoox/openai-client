@@ -14,6 +14,9 @@ type Client interface {
 	// CreateCompletion creates a completion.
 	CreateCompletion(cfg *CreateCompletionRequest) (*CreateCompletionResponse, error)
 
+	// CreateChatCompletion creates a chat completion.
+	CreateChatCompletion(cfg *CreateChatCompletionRequest) (*CreateChatCompletionResponse, error)
+
 	// ListModels lists all models.
 	ListModels() (*ListModelResponse, error)
 
