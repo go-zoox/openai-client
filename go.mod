@@ -6,6 +6,7 @@ require (
 	github.com/go-zoox/core-utils v1.2.2
 	github.com/go-zoox/dotenv v1.2.3
 	github.com/go-zoox/fetch v1.7.5
+	github.com/go-zoox/testify v1.0.0
 )
 
 require (
@@ -23,6 +24,7 @@ require (
 	github.com/tidwall/gjson v1.14.0 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
+	github.com/ttacon/chalk v0.0.0-20160626202418-22c06c80ed31 // indirect
 	golang.org/x/crypto v0.0.0-20220313003712-b769efc7c000 // indirect
 	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
 	golang.org/x/sys v0.5.0 // indirect
