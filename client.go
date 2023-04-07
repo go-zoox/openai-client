@@ -80,6 +80,8 @@ func (c *client) post(path string, body fetch.Body) (*fetch.Response, error) {
 		Body: body,
 		//
 		Proxy: c.cfg.Proxy,
+		//
+		Timeout: c.cfg.Timeout,
 	})
 	if err != nil {
 		return nil, err
