@@ -2,6 +2,7 @@ package openaiclient
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/go-zoox/fetch"
 )
@@ -44,6 +45,10 @@ type Config struct {
 	//		https://127.0.0.1:17890
 	//		socks5://127.0.0.1:17890
 	Proxy string `json:"proxy"`
+
+	// Timeout sets the request timeout.
+	// default: 300s
+	Timeout time.Duration `json:"timeout"`
 }
 
 // New creates a OpenAI Client.
@@ -54,6 +59,10 @@ func New(cfg *Config) (Client, error) {
 
 	if cfg.APIKey == "" {
 		return nil, fmt.Errorf("api key is required")
+	}
+
+	if cfg.Timeout == 0 {
+		cfg.Timeout = 300 * time.Second
 	}
 
 	return &client{
@@ -93,6 +102,8 @@ func (c *client) get(path string, query fetch.Query) (*fetch.Response, error) {
 		Query: query,
 		//
 		Proxy: c.cfg.Proxy,
+		//
+		Timeout: c.cfg.Timeout,
 	})
 	if err != nil {
 		return nil, err
