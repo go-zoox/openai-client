@@ -67,7 +67,7 @@ func (c *client) CreateCompletion(cfg *CreateCompletionRequest) (*CreateCompleti
 	switch c.cfg.APIType {
 	case APITypeOpenAI:
 		// /v1/completions
-		apiPath = fmt.Sprintf("/%s/%s", c.cfg.APIVersion, ResourceCompletion)
+		apiPath = fmt.Sprintf("/v1/%s", ResourceCompletion)
 	case APITypeAzure:
 		// openai/deployments/{deployment_id}/completions
 		apiPath = fmt.Sprintf("/openai/deployments/%s/%s", c.cfg.AzureDeployment, ResourceCompletion)

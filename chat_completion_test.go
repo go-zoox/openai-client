@@ -33,9 +33,9 @@ func TestCreateChatCompletionAzure(t *testing.T) {
 	client, _ := New(&Config{
 		APIKey:          os.Getenv("OPENAI_API_KEY"),
 		APIType:         APITypeAzure,
-		APIServer:       os.Getenv("AZURE_API_SERVER"),
-		APIVersion:      os.Getenv("AZURE_API_VERSION"),
+		AzureResource:   os.Getenv("AZURE_RESOURCE"),
 		AzureDeployment: os.Getenv("AZURE_DEPLOYMENT"),
+		AzureAPIVersion: os.Getenv("AZURE_API_VERSION"),
 	})
 
 	completion, err := client.CreateChatCompletion(&CreateChatCompletionRequest{

@@ -40,12 +40,14 @@ type Config struct {
 	// APIType specify the OpenAI API Type, available: azure, default: empty (openai).
 	APIType string `json:"api_type"`
 
-	// APIVersion specify the OpenAI API Version, available: v1, default: empty (v1).
-	// if APIType is azure, APIVersion should not be empty.
-	APIVersion string `json:"api_version"`
+	// AzureResource is the Azure Resource.
+	AzureResource string `json:"azure_resource"`
 
 	// AzureDeployment is the Azure Deployment.
 	AzureDeployment string `json:"azure_deployment"`
+
+	// AzureAPIVersion is the Azure API Version.
+	AzureAPIVersion string `json:"azure_api_version"`
 
 	// Proxy sets the request proxy.
 	//
@@ -75,19 +77,20 @@ func New(cfg *Config) (Client, error) {
 		cfg.APIType = APITypeOpenAI
 	}
 
-	if cfg.APIVersion == "" {
-		switch cfg.APIType {
-		case APITypeOpenAI:
-			cfg.APIVersion = "v1"
-		case APITypeAzure:
-			return nil, fmt.Errorf("azure api version is required")
-		default:
-			return nil, fmt.Errorf("unknown api type: %s", cfg.APIType)
+	if cfg.APIType == APITypeAzure {
+		if cfg.AzureResource == "" {
+			return nil, fmt.Errorf("azure resource is required")
 		}
-	}
 
-	if cfg.APIType == APITypeAzure && cfg.AzureDeployment == "" {
-		return nil, fmt.Errorf("azure deployment is required")
+		if cfg.AzureDeployment == "" {
+			return nil, fmt.Errorf("azure deployment is required")
+		}
+
+		if cfg.AzureAPIVersion == "" {
+			return nil, fmt.Errorf("azure api version is required")
+		}
+
+		cfg.APIServer = fmt.Sprintf("https://%s.openai.azure.com", cfg.AzureResource)
 	}
 
 	if cfg.Timeout == 0 {
@@ -167,7 +170,7 @@ func (c *client) buildQuery() fetch.Query {
 
 	switch c.cfg.APIType {
 	case APITypeAzure:
-		query["api-version"] = c.cfg.APIVersion
+		query["api-version"] = c.cfg.AzureAPIVersion
 	}
 
 	return query
