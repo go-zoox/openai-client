@@ -1,5 +1,7 @@
 package openaiclient
 
+import "fmt"
+
 // CreateChatCompletionRequest ...
 type CreateChatCompletionRequest struct {
 	// Model is ID of the model to use.
@@ -69,7 +71,17 @@ func (c *client) CreateChatCompletion(cfg *CreateChatCompletionRequest) (*Create
 		cfg.Temperature = 0.8
 	}
 
-	resp, err := c.post("/v1/chat/completions", cfg)
+	var apiPath string
+	switch c.cfg.APIType {
+	case APITypeOpenAI:
+		// /v1/completions
+		apiPath = fmt.Sprintf("/%s/%s", c.cfg.APIVersion, ResourceChatCompletion)
+	case APITypeAzure:
+		// openai/deployments/{deployment_id}/completions
+		apiPath = fmt.Sprintf("/openai/deployments/%s/%s", c.cfg.AzureDeployment, ResourceChatCompletion)
+	}
+
+	resp, err := c.post(apiPath, cfg)
 	if err != nil {
 		return nil, err
 	}

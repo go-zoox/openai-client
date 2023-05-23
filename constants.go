@@ -1,6 +1,23 @@
 package openaiclient
 
 const (
+	// APITypeOpenAI means OpenAI API
+	APITypeOpenAI = "openai"
+
+	// APITypeAzure means Azure OpenAI API
+	APITypeAzure = "azure"
+)
+
+const (
+	// ResourceCompletion ...
+	ResourceCompletion = "completions"
+	// ResourceChatCompletion ...
+	ResourceChatCompletion = "chat/completions"
+	// ResourceEmbedding ...
+	ResourceEmbedding = "embedding"
+)
+
+const (
 	// ModelAda ...
 	ModelAda = "ada"
 	// ModelBabbage ...

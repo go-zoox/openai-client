@@ -1,5 +1,7 @@
 package openaiclient
 
+import "github.com/go-zoox/core-utils/fmt"
+
 // CreateCompletionRequest ...
 type CreateCompletionRequest struct {
 	// Model is ID of the model to use.
@@ -61,7 +63,17 @@ func (c *client) CreateCompletion(cfg *CreateCompletionRequest) (*CreateCompleti
 		cfg.Temperature = 0.8
 	}
 
-	resp, err := c.post("/v1/completions", cfg)
+	var apiPath string
+	switch c.cfg.APIType {
+	case APITypeOpenAI:
+		// /v1/completions
+		apiPath = fmt.Sprintf("/%s/%s", c.cfg.APIVersion, ResourceCompletion)
+	case APITypeAzure:
+		// openai/deployments/{deployment_id}/completions
+		apiPath = fmt.Sprintf("/openai/deployments/%s/%s", c.cfg.AzureDeployment, ResourceCompletion)
+	}
+
+	resp, err := c.post(apiPath, cfg)
 	if err != nil {
 		return nil, err
 	}
