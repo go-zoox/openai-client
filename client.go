@@ -1,6 +1,7 @@
 package openaiclient
 
 import (
+	"errors"
 	"fmt"
 	"time"
 
@@ -121,7 +122,12 @@ func (c *client) post(path string, body fetch.Body) (*fetch.Response, error) {
 	}
 
 	if !response.Ok() {
-		return nil, fmt.Errorf("failed to create completion: %s", response.Get("error").String())
+		errMessage := response.Get("error.message").String()
+		if errMessage != "" {
+			return nil, errors.New(errMessage)
+		}
+
+		return nil, fmt.Errorf("failed to post: %s", response.Get("error").String())
 	}
 
 	return response, nil
@@ -144,7 +150,12 @@ func (c *client) get(path string, query fetch.Query) (*fetch.Response, error) {
 	}
 
 	if !response.Ok() {
-		return nil, fmt.Errorf("failed to create completion: %s", response.Get("error").String())
+		errMessage := response.Get("error.message").String()
+		if errMessage != "" {
+			return nil, errors.New(errMessage)
+		}
+
+		return nil, fmt.Errorf("failed to get: %s", response.Get("error").String())
 	}
 
 	return response, nil
