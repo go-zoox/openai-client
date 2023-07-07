@@ -48,6 +48,9 @@ const (
 const (
 	ModelGPT3_5Turbo     = "gpt-3.5-turbo"
 	ModelGPT3_5Turbo0301 = "gpt-3.5-turbo-0301"
+	//
+	ModelGPT3_5Turbo_16K      = "gpt-3.5-turbo-16k"
+	ModelGPT3_5Turbo_16K_0613 = "gpt-3.5-turbo-16k-0613"
 	// GPT-4 https://platform.openai.com/docs/models/gpt-4
 	ModelGPT_4          = "gpt-4"
 	ModelGPT_4_0314     = "gpt-4-0314"
@@ -76,6 +79,9 @@ var MaxTokensMap = map[string]int64{
 	//
 	ModelGPT3_5Turbo:     4096,
 	ModelGPT3_5Turbo0301: 4096,
+	//
+	ModelGPT3_5Turbo_16K:      16384,
+	ModelGPT3_5Turbo_16K_0613: 16384,
 	//
 	ModelTextDavinci003: 4097,
 	ModelTextDavinci002: 4097,
