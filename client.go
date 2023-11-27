@@ -73,9 +73,9 @@ func New(cfg *Config) (Client, error) {
 		cfg.APIServer = DefaultAPIServer
 	}
 
-	// if cfg.APIKey == "" {
-	// 	return nil, fmt.Errorf("api key is required")
-	// }
+	if cfg.APIKey == "" {
+		return nil, fmt.Errorf("api key is required")
+	}
 
 	if cfg.APIType == "" {
 		cfg.APIType = APITypeOpenAI
