@@ -39,7 +39,7 @@ type RetrieveModelResponse struct {
 }
 
 func (c *client) ListModels() (*ListModelResponse, error) {
-	resp, err := c.get("/v1/models", nil)
+	resp, err := c.get("/models", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func (c *client) ListModels() (*ListModelResponse, error) {
 }
 
 func (c *client) RetrieveModel(model string) (*RetrieveModelResponse, error) {
-	resp, err := c.get(fmt.Sprintf("/v1/models/%s", model), nil)
+	resp, err := c.get(fmt.Sprintf("/models/%s", model), nil)
 	if err != nil {
 		return nil, err
 	}

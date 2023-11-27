@@ -9,7 +9,7 @@ import (
 )
 
 // DefaultAPIServer is OpenAI API Server.
-const DefaultAPIServer = "https://api.openai.com"
+const DefaultAPIServer = "https://api.openai.com/v1"
 
 // Client is a OpenAI API Client.
 type Client interface {
@@ -18,6 +18,9 @@ type Client interface {
 
 	// CreateChatCompletion creates a chat completion.
 	CreateChatCompletion(cfg *CreateChatCompletionRequest) (*CreateChatCompletionResponse, error)
+
+	// ImageGeneration generates images.
+	ImageGeneration(cfg *ImageGenerationRequest) (*ImageGenerationResponse, error)
 
 	// ListModels lists all models.
 	ListModels() (*ListModelResponse, error)
@@ -70,9 +73,9 @@ func New(cfg *Config) (Client, error) {
 		cfg.APIServer = DefaultAPIServer
 	}
 
-	if cfg.APIKey == "" {
-		return nil, fmt.Errorf("api key is required")
-	}
+	// if cfg.APIKey == "" {
+	// 	return nil, fmt.Errorf("api key is required")
+	// }
 
 	if cfg.APIType == "" {
 		cfg.APIType = APITypeOpenAI

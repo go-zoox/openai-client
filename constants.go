@@ -15,6 +15,8 @@ const (
 	ResourceChatCompletion = "chat/completions"
 	// ResourceEmbedding ...
 	ResourceEmbedding = "embedding"
+	// ResourceImageGeneration ...
+	ResourceImageGeneration = "images/generations"
 )
 
 const (
