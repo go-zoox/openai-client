@@ -54,10 +54,12 @@ const (
 	ModelGPT3_5Turbo_16K      = "gpt-3.5-turbo-16k"
 	ModelGPT3_5Turbo_16K_0613 = "gpt-3.5-turbo-16k-0613"
 	// GPT-4 https://platform.openai.com/docs/models/gpt-4
-	ModelGPT_4          = "gpt-4"
-	ModelGPT_4_0314     = "gpt-4-0314"
-	ModelGPT_4_32K      = "gpt-4-32k"
-	ModelGPT_4_32K_0314 = "gpt-4-32k-0314"
+	ModelGPT_4              = "gpt-4"
+	ModelGPT_4_0314         = "gpt-4-0314"
+	ModelGPT_4_32K          = "gpt-4-32k"
+	ModelGPT_4_32K_0314     = "gpt-4-32k-0314"
+	ModelGPT_4_1106_Preview = "gpt-4-1106-preview"
+	ModelGPT_4_Turbo        = "gpt-4-turbo"
 )
 
 // Codex => https://platform.openai.com/docs/models/codex
@@ -74,10 +76,12 @@ const MaxTokensDefault = 4096
 // MaxTokensMap ...
 var MaxTokensMap = map[string]int64{
 	//
-	ModelGPT_4:          8192,
-	ModelGPT_4_0314:     8192,
-	ModelGPT_4_32K:      32768,
-	ModelGPT_4_32K_0314: 32768,
+	ModelGPT_4:              8192,
+	ModelGPT_4_0314:         8192,
+	ModelGPT_4_32K:          32768,
+	ModelGPT_4_32K_0314:     32768,
+	ModelGPT_4_1106_Preview: 128000,
+	ModelGPT_4_Turbo:        128000,
 	//
 	ModelGPT3_5Turbo:     4096,
 	ModelGPT3_5Turbo0301: 4096,
