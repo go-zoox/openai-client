@@ -60,6 +60,8 @@ const (
 	ModelGPT_4_32K_0314     = "gpt-4-32k-0314"
 	ModelGPT_4_1106_Preview = "gpt-4-1106-preview"
 	ModelGPT_4_Turbo        = "gpt-4-turbo"
+	//
+	ModelQwenMax = "qwen-max"
 )
 
 // Codex => https://platform.openai.com/docs/models/codex
@@ -93,4 +95,7 @@ var MaxTokensMap = map[string]int64{
 	ModelTextDavinci002: 4097,
 	//
 	ModelCodeDavinci002: 8001,
+
+	//
+	ModelQwenMax: 8192,
 }
